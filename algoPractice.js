@@ -5,35 +5,35 @@
 // let HiCal = (startTime, endTime) => {
 //     if (startTime[i] <= startTime[j])
 // }
-function mergeRanges(meetings) {
-const meetingsCopy = JSON.parse(JSON.stringify(meetings));
+// function mergeRanges(meetings) {
+// const meetingsCopy = JSON.parse(JSON.stringify(meetings));
 
-const sortedMeetings = meetingsCopy.sort((a, b) => {
-    return a.startTime - b.startTime;
-});
+// const sortedMeetings = meetingsCopy.sort((a, b) => {
+//     return a.startTime - b.startTime;
+// });
 
-const mergedMeetings = [sortedMeetings[0]];
+// const mergedMeetings = [sortedMeetings[0]];
 
-for (let i = 1; i < sortedMeetings.length; i++) {
-    const currentMeeting = sortedMeetings[i];
-    const lastMergedMeeting = mergedMeetings[mergedMeetings.length - 1];
+// for (let i = 1; i < sortedMeetings.length; i++) {
+//     const currentMeeting = sortedMeetings[i];
+//     const lastMergedMeeting = mergedMeetings[mergedMeetings.length - 1];
 
-    if (currentMeeting.startTime <= lastMergedMeeting.endTime) {
-        lastMergedMeeting.endTime = Math.max(lastMergedMeeting.endTime, currentMeeting.endTime);
-    } else {
-        mergedMeetings.push(currentMeeting);
-    }
-};
-return mergedMeetings;
-};
+//     if (currentMeeting.startTime <= lastMergedMeeting.endTime) {
+//         lastMergedMeeting.endTime = Math.max(lastMergedMeeting.endTime, currentMeeting.endTime);
+//     } else {
+//         mergedMeetings.push(currentMeeting);
+//     }
+// };
+// return mergedMeetings;
+// };
 
-console.log(mergeRanges(  [
-    { startTime: 0,  endTime: 1 },
-    { startTime: 3,  endTime: 5 },
-    { startTime: 4,  endTime: 8 },
-    { startTime: 10, endTime: 12 },
-    { startTime: 9,  endTime: 10 },
-  ]));
+// console.log(mergeRanges(  [
+//     { startTime: 0,  endTime: 1 },
+//     { startTime: 3,  endTime: 5 },
+//     { startTime: 4,  endTime: 8 },
+//     { startTime: 10, endTime: 12 },
+//     { startTime: 9,  endTime: 10 },
+//   ]));
 
 // LEET CODE - ADD TWO NUMBERS
 
@@ -59,33 +59,60 @@ console.log(mergeRanges(  [
 // };
 
 
-function reverseWords(message) {
+// function reverseWords(message) {
+    
+//     reverseCharacters(message, 0, messsage.length-1);
+    
+//     let currentWordStartIndex = 0;
+//     for (let i = 0; i <= message.length; i++) {
+//       if (i === message.length || message[i] === ' ') {
+//         reverseCharacters(message, currentWordStartIndex, i - 1);
+//         currentWordStartIndex = i  - 1;
+//       }
+//     };
+    
+//     function reverseCharacters(message, leftIndex, rightIndex) {
+//       while (leftIndex < rightIndex){
+//         const temp = message[leftIndex];
+//         message[leftIndex] = message[rightIndex];
+//         message[rightIndex] = temp;
+//         leftIndex++;
+//         rightIndex--;
+//       }
+//     };
+    
+    
+  
+//   }
+//   console.log(reverseWords("katie is cool"));
+  
 
-    // Decode the message by reversing the words
+
+function mergeArrays(myArray, alicesArray) {
+
+    // Combine the sorted arrays into one large sorted array
     
-    reverseCharacters(message, 0, messsage.length-1);
+    const mergedArray = [];
     
-    let currentWordStartIndex = 0;
-    for (let i = 0; i<=message.length; i++){
-      if (i === message.length || message[i] === ' '){
-        reverseCharacters(message, currentWordStartIndex, i-1);
-        currentWordStartIndex = i-1;
+    let currentIndexA = 0;
+    let currentIndexM = 0;
+    let currentIndexMerged = 0;
+    
+    while (currentIndexMerged < (myArray.length + alicesArray.length)) {
+      const isMyArrayExhausted = currentIndexM >= myArray.length;
+      const isAliceArrayExhausted = currentIndexA >= alicesArray.length;
+      
+      if (!isMyArrayExhausted && (isAliceArrayExhausted || (myArray[currentIndexM] < alicesArray[currentIndexA]))) {
+        mergedArray[currentIndexMerged] = myArray[currentIndexM];
+        currentIndexM++;
       }
-    };
-    
-    function reverseCharacters(message, leftIndex, rightIndex) {
-      while (leftIndex < rightIndex){
-        const temp = message[leftIndex];
-        message[leftIndex] = message[rightIndex];
-        message[rightIndex] = temp;
-        leftIndex++;
-        rightIndex--;
+      else {
+        mergedArray[currentIndexMerged] = alicesArray[currentIndexA];
+        currentIndexA++
       }
-    };
+      currentIndexMerged++;
     
+    }
     
-  
+    return mergedArray;
   }
-  console.log(reverseWords("katie is cool"));
-  
-  
