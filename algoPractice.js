@@ -40,8 +40,8 @@
 
 
 /////////////////////////////////////////////
-
 // Write a function that takes an array of characters and reverses the letters in place
+/////////////////////////////////////////////
 
 // function reverse(arrayOfChars) {
 //     let leftIndex = 0;
@@ -57,6 +57,10 @@
 //     }
     
 // };
+
+////////////////////////////////////////////////////
+// Write a function that reverses a string
+////////////////////////////////////////////////////
 
 
 // function reverseWords(message) {
@@ -86,33 +90,68 @@
 //   }
 //   console.log(reverseWords("katie is cool"));
   
+/////////////////////////////////////////
+// Merging two arrays
+/////////////////////////////////////////
 
-
-function mergeArrays(myArray, alicesArray) {
-
-    // Combine the sorted arrays into one large sorted array
+// function mergeArrays(myArray, alicesArray) {
     
-    const mergedArray = [];
+//     const mergedArray = [];
     
-    let currentIndexA = 0;
-    let currentIndexM = 0;
-    let currentIndexMerged = 0;
+//     let currentIndexA = 0;
+//     let currentIndexM = 0;
+//     let currentIndexMerged = 0;
     
-    while (currentIndexMerged < (myArray.length + alicesArray.length)) {
-      const isMyArrayExhausted = currentIndexM >= myArray.length;
-      const isAliceArrayExhausted = currentIndexA >= alicesArray.length;
+//     while (currentIndexMerged < (myArray.length + alicesArray.length)) {
+//       const isMyArrayExhausted = currentIndexM >= myArray.length;
+//       const isAliceArrayExhausted = currentIndexA >= alicesArray.length;
       
-      if (!isMyArrayExhausted && (isAliceArrayExhausted || (myArray[currentIndexM] < alicesArray[currentIndexA]))) {
-        mergedArray[currentIndexMerged] = myArray[currentIndexM];
-        currentIndexM++;
-      }
-      else {
-        mergedArray[currentIndexMerged] = alicesArray[currentIndexA];
-        currentIndexA++
-      }
-      currentIndexMerged++;
+//       if (!isMyArrayExhausted && (isAliceArrayExhausted || (myArray[currentIndexM] < alicesArray[currentIndexA]))) {
+//         mergedArray[currentIndexMerged] = myArray[currentIndexM];
+//         currentIndexM++;
+//       }
+//       else {
+//         mergedArray[currentIndexMerged] = alicesArray[currentIndexA];
+//         currentIndexA++
+//       }
+//       currentIndexMerged++;
     
+//     }
+    
+//     return mergedArray;
+//   }
+
+
+//////////////////////////////////////
+// Given three arrays, write a function to check that my service is first-come, first-served. All food should come out in the same order customers requested it.
+//////////////////////////////////////
+
+
+
+/////////////////////////////////////
+// Anagram Checker
+/////////////////////////////////////
+function validAnagram(first, second) {
+    if (first.length !== second.length) {
+        return false;
     }
-    
-    return mergedArray;
-  }
+
+    const lookup = {};
+
+    for (let i = 0; i < first.length; i++) {
+        let letter = first[i];
+        lookup[letter] ? lookup[lettter] += 1 : lookup[letter] = 1;
+    }
+    for (let i = 0; i < second.length; i++) {
+        let letter = second[i];
+        if (!lookup[letter]) {
+            return false;
+        }
+        else {
+            lookup[letter] -= 1;
+        }
+    }
+    return true;
+}
+
+console.log(validAnagram('katie', 'ktiea'));
