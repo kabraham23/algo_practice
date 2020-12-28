@@ -155,3 +155,22 @@ function validAnagram(first, second) {
 }
 
 console.log(validAnagram('katie', 'ktiea'));
+
+//////////////////////////////////
+// Two Sum
+//////////////////////////////////
+
+function twoNumberSum(array, targetSum) {
+    // Write your code here.
+      const result = {};
+      for (let num of array) {
+          const match = targetSum - num;
+          if (match in result) {
+              return [match, num]
+          } else {
+              result[num] = true
+          }
+      }
+      return [];
+  };
+console.log(twoNumberSum([3, 5, -4, 8, 11, 1, -1, 6], 10));
