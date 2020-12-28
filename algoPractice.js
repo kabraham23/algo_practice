@@ -187,4 +187,4 @@ function isValidSubsequence(array, sequence) {
           if (sequence[sequenceHolder] === i) sequenceHolder++;
       }
       return sequenceHolder === sequence.length;
-   }
+   };
