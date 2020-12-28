@@ -174,3 +174,17 @@ function twoNumberSum(array, targetSum) {
       return [];
   };
 console.log(twoNumberSum([3, 5, -4, 8, 11, 1, -1, 6], 10));
+
+//////////////////////////////////
+// Valid Subsequence
+//////////////////////////////////
+
+function isValidSubsequence(array, sequence) {
+    // Write your code here.
+      let sequenceHolder = 0;
+      for (let i of array) {
+          if (sequenceHolder === sequence.length) break;
+          if (sequence[sequenceHolder] === i) sequenceHolder++;
+      }
+      return sequenceHolder === sequence.length;
+   }
