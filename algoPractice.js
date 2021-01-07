@@ -193,20 +193,67 @@ function isValidSubsequence(array, sequence) {
 // Binary Search Trees
 ////////////////////////////////
 
-class Node {
-    constructor(value) {
-        this.value = value;
-        this.left = null;
-        this.right = null;
-    }
-}
+// class Node {
+//     constructor(value) {
+//         this.value = value;
+//         this.left = null;
+//         this.right = null;
+//     }
+// }
 
+// class BinarySearchTree {
+//     constructor() {
+//         this.root = null;
+//     }
+// }
+
+// var tree = new BinarySearchTree();
+// tree.root = new Node(10);
+// tree ... etc
+
+////////////////////////////////
+// BST Insert
+///////////////////////////////
+
+class Node {
+        constructor(value) {
+            this.value = value;
+            this.left = null;
+            this.right = null;
+        }
+    }
+    
 class BinarySearchTree {
     constructor() {
         this.root = null;
     }
-}
+    insert(value){
+        let newNode = new Node(value);
+        if(this.root === null){
+            this.root = newNode;
+            return this;
+        } else {
+            let current = this.root;
+            while(true) {
+                if(value === current.value) return undefined;
+                if (value < current.value){
+                    if(current.left === null){
+                        current.left = newNode;
+                        return this;
+                    } else current = current.left;
+                }else if(value > current.value){
+                    current.right = newNode;
+                    return this;
+                } else {
+                    current = current.right;
+                }
+            }
+        }
+    }
+};
 
 var tree = new BinarySearchTree();
-tree.root = new Node(10);
-tree ... etc
+console.log(tree.insert(10))
+console.log(tree.insert(5))
+console.log(tree.insert(13))
+console.log(tree.insert(11))
