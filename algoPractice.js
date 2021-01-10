@@ -131,63 +131,63 @@
 /////////////////////////////////////
 // Anagram Checker
 /////////////////////////////////////
-function validAnagram(first, second) {
-    if (first.length !== second.length) {
-        return false;
-    }
+// function validAnagram(first, second) {
+//     if (first.length !== second.length) {
+//         return false;
+//     }
 
-    const lookup = {};
+//     const lookup = {};
 
-    for (let i = 0; i < first.length; i++) {
-        let letter = first[i];
-        lookup[letter] ? lookup[lettter] += 1 : lookup[letter] = 1;
-    }
-    for (let i = 0; i < second.length; i++) {
-        let letter = second[i];
-        if (!lookup[letter]) {
-            return false;
-        }
-        else {
-            lookup[letter] -= 1;
-        }
-    }
-    return true;
-}
+//     for (let i = 0; i < first.length; i++) {
+//         let letter = first[i];
+//         lookup[letter] ? lookup[lettter] += 1 : lookup[letter] = 1;
+//     }
+//     for (let i = 0; i < second.length; i++) {
+//         let letter = second[i];
+//         if (!lookup[letter]) {
+//             return false;
+//         }
+//         else {
+//             lookup[letter] -= 1;
+//         }
+//     }
+//     return true;
+// }
 
-console.log(validAnagram('katie', 'ktiea'));
+// console.log(validAnagram('katie', 'ktiea'));
 
 //////////////////////////////////
 // Two Sum
 //////////////////////////////////
 
-function twoNumberSum(array, targetSum) {
-    // Write your code here.
-      const result = {};
-      for (let num of array) {
-          const match = targetSum - num;
-          if (match in result) {
-              return [match, num]
-          } else {
-              result[num] = true
-          }
-      }
-      return [];
-  };
-console.log(twoNumberSum([3, 5, -4, 8, 11, 1, -1, 6], 10));
+// function twoNumberSum(array, targetSum) {
+//     // Write your code here.
+//       const result = {};
+//       for (let num of array) {
+//           const match = targetSum - num;
+//           if (match in result) {
+//               return [match, num]
+//           } else {
+//               result[num] = true
+//           }
+//       }
+//       return [];
+//   };
+// console.log(twoNumberSum([3, 5, -4, 8, 11, 1, -1, 6], 10));
 
 //////////////////////////////////
 // Valid Subsequence
 //////////////////////////////////
 
-function isValidSubsequence(array, sequence) {
-    // Write your code here.
-      let sequenceHolder = 0;
-      for (let i of array) {
-          if (sequenceHolder === sequence.length) break;
-          if (sequence[sequenceHolder] === i) sequenceHolder++;
-      }
-      return sequenceHolder === sequence.length;
-   };
+// function isValidSubsequence(array, sequence) {
+//     // Write your code here.
+//       let sequenceHolder = 0;
+//       for (let i of array) {
+//           if (sequenceHolder === sequence.length) break;
+//           if (sequence[sequenceHolder] === i) sequenceHolder++;
+//       }
+//       return sequenceHolder === sequence.length;
+//    };
 
 /////////////////////////////////
 // Binary Search Trees
@@ -215,45 +215,80 @@ function isValidSubsequence(array, sequence) {
 // BST Insert
 ///////////////////////////////
 
-class Node {
-        constructor(value) {
-            this.value = value;
-            this.left = null;
-            this.right = null;
-        }
-    }
+// class Node {
+//         constructor(value) {
+//             this.value = value;
+//             this.left = null;
+//             this.right = null;
+//         }
+//     }
     
+// class BinarySearchTree {
+//     constructor() {
+//         this.root = null;
+//     }
+//     insert(value){
+//         let newNode = new Node(value);
+//         if(this.root === null){
+//             this.root = newNode;
+//             return this;
+//         } else {
+//             let current = this.root;
+//             while(true) {
+//                 if(value === current.value) return undefined;
+//                 if (value < current.value){
+//                     if(current.left === null){
+//                         current.left = newNode;
+//                         return this;
+//                     } else current = current.left;
+//                 }else if(value > current.value){
+//                     current.right = newNode;
+//                     return this;
+//                 } else {
+//                     current = current.right;
+//                 }
+//             }
+//         }
+//     }
+// };
+
+// var tree = new BinarySearchTree();
+// console.log(tree.insert(10))
+// console.log(tree.insert(5))
+// console.log(tree.insert(13))
+// console.log(tree.insert(11));
+
+
+////////////////////////////////////////
+// Find in BST
+////////////////////////////////////////
+
+class Node {
+    constructor(value) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+}
+
 class BinarySearchTree {
     constructor() {
         this.root = null;
     }
-    insert(value){
-        let newNode = new Node(value);
-        if(this.root === null){
-            this.root = newNode;
-            return this;
-        } else {
-            let current = this.root;
-            while(true) {
-                if(value === current.value) return undefined;
-                if (value < current.value){
-                    if(current.left === null){
-                        current.left = newNode;
-                        return this;
-                    } else current = current.left;
-                }else if(value > current.value){
-                    current.right = newNode;
-                    return this;
-                } else {
-                    current = current.right;
-                }
+    find(value){
+        if(this.root === null) return false;
+        let current = this.root,
+            found = false;
+        while (current && !found){
+            if (value < current.value){
+                current = current.left;
+            } else if (value > current.value){
+                current = current.right;
+            } else {
+                found = true;
             }
         }
+        if(!found) return false;
+        return current;
     }
 };
-
-var tree = new BinarySearchTree();
-console.log(tree.insert(10))
-console.log(tree.insert(5))
-console.log(tree.insert(13))
-console.log(tree.insert(11))
