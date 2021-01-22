@@ -263,7 +263,41 @@
 // Find in BST
 ////////////////////////////////////////
 
-class Node {
+// class Node {
+//     constructor(value) {
+//         this.value = value;
+//         this.left = null;
+//         this.right = null;
+//     }
+// }
+
+// class BinarySearchTree {
+//     constructor() {
+//         this.root = null;
+//     }
+//     find(value){
+//         if(this.root === null) return false;
+//         let current = this.root,
+//             found = false;
+//         while (current && !found){
+//             if (value < current.value){
+//                 current = current.left;
+//             } else if (value > current.value){
+//                 current = current.right;
+//             } else {
+//                 found = true;
+//             }
+//         }
+//         if(!found) return false;
+//         return current;
+//     }
+// };
+
+///////////////////////////////
+// Sum of Each Branch in Binary Tree
+///////////////////////////////
+
+class BinaryTree {
     constructor(value) {
         this.value = value;
         this.left = null;
@@ -271,24 +305,21 @@ class Node {
     }
 }
 
-class BinarySearchTree {
-    constructor() {
-        this.root = null;
+function branchSums(root) {
+    const sums = [];
+    caluclateBranchSums(root, 0, sums);
+    return sums;
+}
+
+function caluclateBranchSums(node, runningSum, sums) {
+    if (!node) return;
+    const newRunningSum = runningSum +node.value;
+    if (!node.left && !node.right) {
+    sums.push(newRunningSum);
+    return;
     }
-    find(value){
-        if(this.root === null) return false;
-        let current = this.root,
-            found = false;
-        while (current && !found){
-            if (value < current.value){
-                current = current.left;
-            } else if (value > current.value){
-                current = current.right;
-            } else {
-                found = true;
-            }
-        }
-        if(!found) return false;
-        return current;
-    }
-};
+
+    caluclateBranchSums(node.left, newRunningSum, sums);
+    caluclateBranchSums(node.right, newRunningSum, sums);
+}
+
