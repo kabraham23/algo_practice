@@ -340,4 +340,5 @@ function countUniqueValues(arr) {
     return i + 1;
 };
 
-countUniqueValues([1,1,2,3,4,5,5,6,7]);
+// countUniqueValues();
+console.log(countUniqueValues([1,1,2,3,4,5,5,6,7]));
