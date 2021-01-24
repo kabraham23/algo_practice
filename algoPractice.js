@@ -297,29 +297,47 @@
 // Sum of Each Branch in Binary Tree
 ///////////////////////////////
 
-class BinaryTree {
-    constructor(value) {
-        this.value = value;
-        this.left = null;
-        this.right = null;
+// class BinaryTree {
+//     constructor(value) {
+//         this.value = value;
+//         this.left = null;
+//         this.right = null;
+//     }
+// }
+
+// function branchSums(root) {
+//     const sums = [];
+//     caluclateBranchSums(root, 0, sums);
+//     return sums;
+// }
+
+// function caluclateBranchSums(node, runningSum, sums) {
+//     if (!node) return;
+//     const newRunningSum = runningSum +node.value;
+//     if (!node.left && !node.right) {
+//     sums.push(newRunningSum);
+//     return;
+//     }
+
+//     caluclateBranchSums(node.left, newRunningSum, sums);
+//     caluclateBranchSums(node.right, newRunningSum, sums);
+// }
+
+////////////////////////////////////////
+// Count Unique Values
+////////////////////////////////////////
+
+function countUniqueValues(arr) {
+    if (arr.length === 0) return 0;
+    let i = 0;
+    for (let j = 1; j < arr.length; j++) {
+        if (arr[i] !== arr[j]){
+            i++;
+            arr[i] = arr[j]
+        }
+        // console.log(i,j);
     }
-}
+    return i + 1;
+};
 
-function branchSums(root) {
-    const sums = [];
-    caluclateBranchSums(root, 0, sums);
-    return sums;
-}
-
-function caluclateBranchSums(node, runningSum, sums) {
-    if (!node) return;
-    const newRunningSum = runningSum +node.value;
-    if (!node.left && !node.right) {
-    sums.push(newRunningSum);
-    return;
-    }
-
-    caluclateBranchSums(node.left, newRunningSum, sums);
-    caluclateBranchSums(node.right, newRunningSum, sums);
-}
-
+countUniqueValues([1,1,2,3,4,5,5,6,7]);
