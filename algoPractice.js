@@ -349,39 +349,60 @@
 
 // Useful in keeping track of a subset in a larger array or string
 
-function maxSubarraySum(arr, num) {
-    if (num > arr.length){
-        return null;
-    }
-    let max = -Infinity;
-    for (let i = 0; i < arr.length - num +1; i++){
-        temp = 0;
-        for (let j = 0; j < num; j++){
-            temp += arr[i+j];
-        }
-        if (temp > max){
-            max = temp;
-        }
-    }
-    return max;
-}
-console.log(maxSubarraySum([2,5,6,9,2,1,8,5,6,3],3))
-// this method is very inefficient
+// function maxSubarraySum(arr, num) {
+//     if (num > arr.length){
+//         return null;
+//     }
+//     let max = -Infinity;
+//     for (let i = 0; i < arr.length - num +1; i++){
+//         temp = 0;
+//         for (let j = 0; j < num; j++){
+//             temp += arr[i+j];
+//         }
+//         if (temp > max){
+//             max = temp;
+//         }
+//     }
+//     return max;
+// }
+// console.log(maxSubarraySum([2,5,6,9,2,1,8,5,6,3],3))
+// // this method is very inefficient
 
-// SLIDING WINDOW
+// // SLIDING WINDOW
 
-function maxSubarray(arr, num){
-    let maxSum = 0;
-    let tempSum = 0;
-    if (arr.length < num) return null;
-    for (let i = 0; i < num; i++){
-        maxSum += arr[i];
-    }
-    tempSum = maxSum;
-    for (let i = num; i < arr.length; i++){
-        tempSum = tempSum - arr[i - num] + arr[i];
-        maxSum = Math.max(maxSum, tempSum);
-    }
-    return maxSum;
+// function maxSubarray(arr, num){
+//     let maxSum = 0;
+//     let tempSum = 0;
+//     if (arr.length < num) return null;
+//     for (let i = 0; i < num; i++){
+//         maxSum += arr[i];
+//     }
+//     tempSum = maxSum;
+//     for (let i = num; i < arr.length; i++){
+//         tempSum = tempSum - arr[i - num] + arr[i];
+//         maxSum = Math.max(maxSum, tempSum);
+//     }
+//     return maxSum;
+// }
+// console.log(maxSubarray([2,5,6,9,2,1,8,5,6,3],3))
+
+////////////////////////////////
+// Node Depths
+////////////////////////////////
+
+function nodeDepths(root, depth = 0) {
+	let sumOfDepths = 0;
+	if (root === null) return 0;
+	return depth + nodeDepths(root.left, depth + 1) + nodeDepths(root.right, depth + 1);
 }
-console.log(maxSubarray([2,5,6,9,2,1,8,5,6,3],3))
+
+class BinaryTree {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+exports.nodeDepths = nodeDepths;
+
