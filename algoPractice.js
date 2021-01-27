@@ -390,19 +390,58 @@
 // Node Depths
 ////////////////////////////////
 
-function nodeDepths(root, depth = 0) {
-	let sumOfDepths = 0;
-	if (root === null) return 0;
-	return depth + nodeDepths(root.left, depth + 1) + nodeDepths(root.right, depth + 1);
-}
+// function nodeDepths(root, depth = 0) {
+// 	let sumOfDepths = 0;
+// 	if (root === null) return 0;
+// 	return depth + nodeDepths(root.left, depth + 1) + nodeDepths(root.right, depth + 1);
+// }
 
-class BinaryTree {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
+// class BinaryTree {
+//   constructor(value) {
+//     this.value = value;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
 
-exports.nodeDepths = nodeDepths;
+// exports.nodeDepths = nodeDepths;
 
+
+
+/////////////////////////////////////
+// Divide and Conquer
+/////////////////////////////////////
+
+
+/////////////////////////////////////
+// Add Two Numbers - leetCode (linked lists)
+/////////////////////////////////////
+
+var addTwoNumbers = function(l1, l2) {
+    let list = new ListNode(0);
+    let currentNode = list;
+    
+    let sum = 0;
+    let carry = 0;
+    
+    while (l1 !== null || l2 !== null || sum > 0) {
+        if (l1 !==null) {
+            sum += l1.val;
+            l1 = l1.next;
+        }
+        if (l2 !== null) {
+            sum += l2.val;
+            l2 = l2.next;
+        }
+        
+        carry = Math.floor(sum / 10);
+        sum = sum % 10;
+        
+        currentNode.next = new ListNode(sum);
+        currentNode = currentNode.next;
+        
+        sum = carry;
+        carry = 0;
+    }
+    return list.next;
+};
