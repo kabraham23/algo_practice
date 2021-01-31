@@ -408,40 +408,48 @@
 
 
 
-/////////////////////////////////////
-// Divide and Conquer
-/////////////////////////////////////
 
 
 /////////////////////////////////////
 // Add Two Numbers - leetCode (linked lists)
 /////////////////////////////////////
 
-var addTwoNumbers = function(l1, l2) {
-    let list = new ListNode(0);
-    let currentNode = list;
+// var addTwoNumbers = function(l1, l2) {
+//     let list = new ListNode(0);
+//     let currentNode = list;
     
-    let sum = 0;
-    let carry = 0;
+//     let sum = 0;
+//     let carry = 0;
     
-    while (l1 !== null || l2 !== null || sum > 0) {
-        if (l1 !==null) {
-            sum += l1.val;
-            l1 = l1.next;
-        }
-        if (l2 !== null) {
-            sum += l2.val;
-            l2 = l2.next;
-        }
+//     while (l1 !== null || l2 !== null || sum > 0) {
+//         if (l1 !==null) {
+//             sum += l1.val;
+//             l1 = l1.next;
+//         }
+//         if (l2 !== null) {
+//             sum += l2.val;
+//             l2 = l2.next;
+//         }
         
-        carry = Math.floor(sum / 10);
-        sum = sum % 10;
+//         carry = Math.floor(sum / 10);
+//         sum = sum % 10;
         
-        currentNode.next = new ListNode(sum);
-        currentNode = currentNode.next;
+//         currentNode.next = new ListNode(sum);
+//         currentNode = currentNode.next;
         
-        sum = carry;
-        carry = 0;
-    }
-    return list.next;
-};
+//         sum = carry;
+//         carry = 0;
+//     }
+//     return list.next;
+// };
+
+//////////////////////////////////////
+// occurences in array
+//////////////////////////////////////
+
+function findNumberWithNOccurrences(numbers, n) {
+    let numCount = 0;
+    for (let i = 0; i < numbers.length; i++)
+        if (n === numbers[i]) numCount++;
+    console.log(numCount);
+} return findNumberWithNOccurrences([1,1,1,1,1,2,3,4,5,6], 1);
