@@ -447,9 +447,22 @@
 // occurences in array
 //////////////////////////////////////
 
-function findNumberWithNOccurrences(numbers, n) {
-    let numCount = 0;
-    for (let i = 0; i < numbers.length; i++)
-        if (n === numbers[i]) numCount++;
-    console.log(numCount);
-} return findNumberWithNOccurrences([1,1,1,1,1,2,3,4,5,6], 1);
+// function findNumberWithNOccurrences(numbers, n) {
+//     let numCount = 0;
+//     for (let i = 0; i < numbers.length; i++)
+//         if (n === numbers[i]) numCount++;
+//     console.log(numCount);
+// } return findNumberWithNOccurrences([1,1,1,1,1,2,3,4,5,6], 1);
+
+//////////////////////////////////////
+// Depth-first search
+//////////////////////////////////////
+
+function pthFactor(n, p){
+    let factorArray = [];
+    for (let i = 1; i <= n; i++){
+      if (n % i === 0) {
+        factorArray.push(i);
+      } else i++;
+    } console.log(factorArray[(p - 1)]);
+  } return pthFactor(20, 3);
