@@ -458,11 +458,37 @@
 // Depth-first search
 //////////////////////////////////////
 
-function pthFactor(n, p){
-    let factorArray = [];
-    for (let i = 1; i <= n; i++){
-      if (n % i === 0) {
-        factorArray.push(i);
-      } else i++;
-    } console.log(factorArray[(p - 1)]);
-  } return pthFactor(20, 3);
+class Node {
+    constructor(name) {
+      this.name = name;
+      this.children = [];
+    }
+  
+    addChild(name) {
+      this.children.push(new Node(name));
+      return this;
+    }
+  
+    depthFirstSearch(array) {
+      // Write your code here.
+          array.push(this.name)
+          for (const child of this.children) {
+              child.depthFirstSearch(array);
+          }
+          return array;
+      }
+  }
+  
+
+////////////////////////////////////
+// Twitter Code Challenge
+////////////////////////////////////
+// function pthFactor(n, p){
+//     let factorArray = [];
+//     for (let i = 1; i <= n; i++){
+//       if (n % i === 0) {
+//         factorArray.push(i);
+//       } else i++;
+//     } console.log(factorArray[(p - 1)]);
+//   } return pthFactor(20, 3);
+
