@@ -458,26 +458,26 @@
 // Depth-first search
 //////////////////////////////////////
 
-class Node {
-    constructor(name) {
-      this.name = name;
-      this.children = [];
-    }
+// class Node {
+//     constructor(name) {
+//       this.name = name;
+//       this.children = [];
+//     }
   
-    addChild(name) {
-      this.children.push(new Node(name));
-      return this;
-    }
+//     addChild(name) {
+//       this.children.push(new Node(name));
+//       return this;
+//     }
   
-    depthFirstSearch(array) {
-      // Write your code here.
-          array.push(this.name)
-          for (const child of this.children) {
-              child.depthFirstSearch(array);
-          }
-          return array;
-      }
-  }
+//     depthFirstSearch(array) {
+//       // Write your code here.
+//           array.push(this.name)
+//           for (const child of this.children) {
+//               child.depthFirstSearch(array);
+//           }
+//           return array;
+//       }
+//   }
   
 
 ////////////////////////////////////
@@ -492,3 +492,53 @@ class Node {
 //     } console.log(factorArray[(p - 1)]);
 //   } return pthFactor(20, 3);
 
+
+////////////////////////////////////
+// Minimum Waiting Time
+////////////////////////////////////
+
+////////////////////////////////////
+// Better.com coding challenge
+////////////////////////////////////
+
+function solution(N) {
+    let numArray = N.toString().split('');
+    console.log(numArray)
+    for (let i = 0; i >= numArray.length; i++) {
+        if (numArray[i] > 5) i++;
+        else if (numArray[i] < 5) {numArray.push(5).charAt(i)};
+        console.log(i);
+    }
+    // let newNum = parseInt(numArray);
+    // return newNum;
+}
+console.log(solution(268))
+
+function solution(S) {
+    let upperCase = [];
+    let lowerCase = [];
+    let stringArray = S.split('');
+    console.log(stringArray)
+    for (let i = 0; i <= stringArray.length-1; i++) {
+        if (stringArray[i] === stringArray[i].toUpperCase()) upperCase.push(stringArray[i]);
+        else if (stringArray[i] === stringArray[i].toLowerCase()) lowerCase.push(stringArray[i]);
+    }
+    let balancedFragment = 0;
+    for (let j = 0; j < upperCase.length; j++) {
+        for (let k = 0; k < lowerCase.length; k++) {
+            if (upperCase[j] === lowerCase[k].toUpperCase())
+            balancedFragment++;
+            
+        }
+    }return balancedFragment;
+}
+console.log(solution('catCAT'))
+
+function solution(S, K) {
+    let daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    if (K > 500) return undefined;
+    const dayIndex = daysOfWeek.indexOf(S);
+    const numIndex = (dayIndex + K) % daysOfWeek.length;
+    return daysOfWeek[numIndex]
+};
+console.log(solution('Sat', 23))
