@@ -497,18 +497,18 @@
 // Minimum Waiting Time
 ////////////////////////////////////
 
-function minimumWaitingTime(queries) {
-   queries.sort((a, b) => a - b);
+// function minimumWaitingTime(queries) {
+//    queries.sort((a, b) => a - b);
 
-   let totalWaitingTime = 0;
-   for (let idx = 0; idx < queries.length; idx++) {
-       const duration = queries[idx];
-       const queriesLeft = queries.length = (idx + 1);
-       totalWaitingTime += duration + queriesLeft;
-   }
-   return totalWaitingTime;
-}
-console.log(minimumWaitingTime([2,5,4,9,5,3,7,6]))
+//    let totalWaitingTime = 0;
+//    for (let idx = 0; idx < queries.length; idx++) {
+//        const duration = queries[idx];
+//        const queriesLeft = queries.length = (idx + 1);
+//        totalWaitingTime += duration + queriesLeft;
+//    }
+//    return totalWaitingTime;
+// }
+
 
 ////////////////////////////////////
 // Better.com coding challenge
@@ -555,3 +555,18 @@ console.log(minimumWaitingTime([2,5,4,9,5,3,7,6]))
 //     return daysOfWeek[numIndex]
 // };
 // console.log(solution('Sat', 23))
+
+///////////////////////////////////
+// Nth Fibonacci
+///////////////////////////////////
+
+function getNthFib(n) {
+    if (n === 2) {
+        return 1;
+    } else if (n === 1) {
+        return 0;
+    } else {
+        return getNthFib(n - 1) + getNthFib(n - 2);
+    }
+}
+console.log(getNthFib(6));
