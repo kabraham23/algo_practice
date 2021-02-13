@@ -584,15 +584,76 @@
 // console.log(getNthFib(6));
 
 // o(n) time || o(1) space
-function getNthFib(n) {
-    const lastTwo = [0, 1];
-    let counter = 3;
-    while (counter <= n) {
-        const nextFib = lastTwo[0] + lastTwo[1];
-        lastTwo[0] = lastTwo[1];
-        lastTwo[1] = nextFib;
-        counter++;
+// function getNthFib(n) {
+//     const lastTwo = [0, 1];
+//     let counter = 3;
+//     while (counter <= n) {
+//         const nextFib = lastTwo[0] + lastTwo[1];
+//         lastTwo[0] = lastTwo[1];
+//         lastTwo[1] = nextFib;
+//         counter++;
+//     }
+//     return n > 1 ? lastTwo[1] : lastTwo[0];
+// }
+// console.log(getNthFib(6))
+
+///////////////////////////
+//
+//////////////////////////
+class PrefixTreeNode {
+    constructor(value) {
+        this.children = {};
+        this.endWord = null;
+        this.value = value;
     }
-    return n > 1 ? lastTwo[1] : lastTwo[0];
+};
+
+class PrefixTree extends PrefixTreeNode {
+    constructor() {
+        super(null);
+    }
+    addStreamer(string) {
+        const addStreamerHelper = (node, str) => {
+            if (!node.children[str[0]]) {
+                node.children[str[0]] = new PrefixTreeNode(str[0]);
+                if (str.length === 1) {
+                    node.children[str[0]].endWord = 1;
+                }
+            } else {
+
+            } if (str.length > 1) {
+                addStreamerHelper(node.children[str[0]], str.slice(1));
+            }
+        };
+        addStreamerHelper(this, string);
+    }
 }
-console.log(getNthFib(6))
+predictStreamer = (string) => {
+    let getRemainingTree = function(string, tree) {
+        let node = tree;
+        while (string) {
+            node = node.children[string[0]];
+            string = string.substr(1);
+        }
+        return node;
+    };
+
+    let allStreamers = [];
+
+    let allStreamersHelper = function(stringSoFar, tree) {
+        for (let k in tree.children) {
+            const child = tree.children[k]
+            let newString = stringSoFar + child.value;
+            if (child.endWord) {
+                allStreamers.push(newString);
+            }
+            allStreamersHelper(newString, child);
+        } 
+        };
+        let remainingTree = getRemainingTree(string, this);
+        if (remainingTree) {
+            allStreamersHelper(string, remainingTree);
+        }
+        return allStreamers;
+    }   
+    
