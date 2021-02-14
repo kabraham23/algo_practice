@@ -598,62 +598,77 @@
 // console.log(getNthFib(6))
 
 ///////////////////////////
-//
+// Twitch coding challenge
 //////////////////////////
-class PrefixTreeNode {
-    constructor(value) {
-        this.children = {};
-        this.endWord = null;
-        this.value = value;
-    }
-};
+// class PrefixTreeNode {
+//     constructor(value) {
+//         this.children = {};
+//         this.endWord = null;
+//         this.value = value;
+//     }
+// };
 
-class PrefixTree extends PrefixTreeNode {
-    constructor() {
-        super(null);
-    }
-    addStreamer(string) {
-        const addStreamerHelper = (node, str) => {
-            if (!node.children[str[0]]) {
-                node.children[str[0]] = new PrefixTreeNode(str[0]);
-                if (str.length === 1) {
-                    node.children[str[0]].endWord = 1;
-                }
-            } else {
+// class PrefixTree extends PrefixTreeNode {
+//     constructor() {
+//         super(null);
+//     }
+//     addStreamer(string) {
+//         const addStreamerHelper = (node, str) => {
+//             if (!node.children[str[0]]) {
+//                 node.children[str[0]] = new PrefixTreeNode(str[0]);
+//                 if (str.length === 1) {
+//                     node.children[str[0]].endWord = 1;
+//                 }
+//             } else {
 
-            } if (str.length > 1) {
-                addStreamerHelper(node.children[str[0]], str.slice(1));
-            }
-        };
-        addStreamerHelper(this, string);
-    }
-}
-predictStreamer = (string) => {
-    let getRemainingTree = function(string, tree) {
-        let node = tree;
-        while (string) {
-            node = node.children[string[0]];
-            string = string.substr(1);
-        }
-        return node;
-    };
+//             } if (str.length > 1) {
+//                 addStreamerHelper(node.children[str[0]], str.slice(1));
+//             }
+//         };
+//         addStreamerHelper(this, string);
+//     }
+// }
+// predictStreamer = (string) => {
+//     let getRemainingTree = function(string, tree) {
+//         let node = tree;
+//         while (string) {
+//             node = node.children[string[0]];
+//             string = string.substr(1);
+//         }
+//         return node;
+//     };
 
-    let allStreamers = [];
+//     let allStreamers = [];
 
-    let allStreamersHelper = function(stringSoFar, tree) {
-        for (let k in tree.children) {
-            const child = tree.children[k]
-            let newString = stringSoFar + child.value;
-            if (child.endWord) {
-                allStreamers.push(newString);
-            }
-            allStreamersHelper(newString, child);
-        } 
-        };
-        let remainingTree = getRemainingTree(string, this);
-        if (remainingTree) {
-            allStreamersHelper(string, remainingTree);
-        }
-        return allStreamers;
-    }   
+//     let allStreamersHelper = function(stringSoFar, tree) {
+//         for (let k in tree.children) {
+//             const child = tree.children[k]
+//             let newString = stringSoFar + child.value;
+//             if (child.endWord) {
+//                 allStreamers.push(newString);
+//             }
+//             allStreamersHelper(newString, child);
+//         } 
+//         };
+//         let remainingTree = getRemainingTree(string, this);
+//         if (remainingTree) {
+//             allStreamersHelper(string, remainingTree);
+//         }
+//         return allStreamers;
+//     }   
     
+//////////////////////////////////
+// Product Sum (algoExpert)
+//////////////////////////////////
+
+function productSum(array, multiplier = 1) {
+      let sum = 0;
+      for (const element of array) {
+          if (Array.isArray(element)) {
+              sum += productSum(element, multiplier + 1);
+          } else { 
+          sum += element;
+          }
+      }
+      return sum * multiplier;
+  }
