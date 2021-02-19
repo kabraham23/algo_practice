@@ -661,14 +661,38 @@
 // Product Sum (algoExpert)
 //////////////////////////////////
 
-function productSum(array, multiplier = 1) {
-      let sum = 0;
-      for (const element of array) {
-          if (Array.isArray(element)) {
-              sum += productSum(element, multiplier + 1);
-          } else { 
-          sum += element;
+// function productSum(array, multiplier = 1) {
+//       let sum = 0;
+//       for (const element of array) {
+//           if (Array.isArray(element)) {
+//               sum += productSum(element, multiplier + 1);
+//           } else { 
+//           sum += element;
+//           }
+//       }
+//       return sum * multiplier;
+//   }
+
+//////////////////////////////////
+// Binary Search
+//////////////////////////////////
+
+function binarySearch(array, target) {
+    // Write your code here.
+      return binarySearchHelper(array, target, 0, array.length - 1);
+  }
+  
+  function binarySearchHelper(array, target, left, right) {
+      while (left <= right) {
+          const middle = Math.floor((left + right) / 2);
+          const potentialMatch = array[middle];
+          if (target === potentialMatch) {
+              return middle;
+          } else if (target < potentialMatch) {
+              right = middle - 1;
+          } else {
+              left = middle + 1;
           }
       }
-      return sum * multiplier;
+      return -1;
   }
