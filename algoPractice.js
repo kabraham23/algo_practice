@@ -677,22 +677,57 @@
 // Binary Search
 //////////////////////////////////
 
-function binarySearch(array, target) {
+// function binarySearch(array, target) {
+//     // Write your code here.
+//       return binarySearchHelper(array, target, 0, array.length - 1);
+//   }
+  
+//   function binarySearchHelper(array, target, left, right) {
+//       while (left <= right) {
+//           const middle = Math.floor((left + right) / 2);
+//           const potentialMatch = array[middle];
+//           if (target === potentialMatch) {
+//               return middle;
+//           } else if (target < potentialMatch) {
+//               right = middle - 1;
+//           } else {
+//               left = middle + 1;
+//           }
+//       }
+//       return -1;
+//   }
+
+
+  //////////////////////////////////
+  // Find Three Largest Numbers
+  //////////////////////////////////
+
+  function findThreeLargestNumbers(array) {
     // Write your code here.
-      return binarySearchHelper(array, target, 0, array.length - 1);
+      let threeLargest = [null, null, null];
+      for (const num of array) {
+          updateLargest(threeLargest, num);
+      }
+      return threeLargest;
   }
   
-  function binarySearchHelper(array, target, left, right) {
-      while (left <= right) {
-          const middle = Math.floor((left + right) / 2);
-          const potentialMatch = array[middle];
-          if (target === potentialMatch) {
-              return middle;
-          } else if (target < potentialMatch) {
-              right = middle - 1;
+  function updateLargest(threeLargest, num) {
+      if (threeLargest[2] === null || num > threeLargest[2]) {
+          shiftAndUpdate(threeLargest, num, 2);
+      } else if (threeLargest[1] === null || num > threeLargest[1]) {
+          shiftAndUpdate(threeLargest, num, 1);
+      } else if (threeLargest,[0] === null || num > threeLargest[0]) {
+          shiftAndUpdate(threeLargest, num, 0);
+      }
+  }
+  
+  function shiftAndUpdate(array, num, idx) {
+      for (let i = 0; i <= idx; i++) {
+          if (i === idx) {
+              array[i] = num;
           } else {
-              left = middle + 1;
+              array[i] = array[i + 1];
           }
       }
-      return -1;
   }
+  
