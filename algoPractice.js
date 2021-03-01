@@ -702,32 +702,83 @@
   // Find Three Largest Numbers
   //////////////////////////////////
 
-  function findThreeLargestNumbers(array) {
-    // Write your code here.
-      let threeLargest = [null, null, null];
-      for (const num of array) {
-          updateLargest(threeLargest, num);
-      }
-      return threeLargest;
-  }
+//   function findThreeLargestNumbers(array) {
+//     // Write your code here.
+//       let threeLargest = [null, null, null];
+//       for (const num of array) {
+//           updateLargest(threeLargest, num);
+//       }
+//       return threeLargest;
+//   }
   
-  function updateLargest(threeLargest, num) {
-      if (threeLargest[2] === null || num > threeLargest[2]) {
-          shiftAndUpdate(threeLargest, num, 2);
-      } else if (threeLargest[1] === null || num > threeLargest[1]) {
-          shiftAndUpdate(threeLargest, num, 1);
-      } else if (threeLargest,[0] === null || num > threeLargest[0]) {
-          shiftAndUpdate(threeLargest, num, 0);
-      }
-  }
+//   function updateLargest(threeLargest, num) {
+//       if (threeLargest[2] === null || num > threeLargest[2]) {
+//           shiftAndUpdate(threeLargest, num, 2);
+//       } else if (threeLargest[1] === null || num > threeLargest[1]) {
+//           shiftAndUpdate(threeLargest, num, 1);
+//       } else if (threeLargest,[0] === null || num > threeLargest[0]) {
+//           shiftAndUpdate(threeLargest, num, 0);
+//       }
+//   }
   
-  function shiftAndUpdate(array, num, idx) {
-      for (let i = 0; i <= idx; i++) {
-          if (i === idx) {
-              array[i] = num;
-          } else {
-              array[i] = array[i + 1];
-          }
-      }
-  }
+//   function shiftAndUpdate(array, num, idx) {
+//       for (let i = 0; i <= idx; i++) {
+//           if (i === idx) {
+//               array[i] = num;
+//           } else {
+//               array[i] = array[i + 1];
+//           }
+//       }
+//   }
   
+  ///////////////////////////////
+  // Bubble Sort
+  ///////////////////////////////
+
+  // function bubbleSort(array) {
+  //     let sorted = false;
+  //     let counter = 0;
+  //     while (!isSorted) {
+  //       sorted = true;
+  //       for (let i = 0; i < array.length - 1 - counter; i++) {
+  //           if (array[i] > array[i + 1]) {
+  //               swap(i, i + 1, array);
+  //               sorted = false;
+  //           }
+  //       }
+  //       counter++;
+  //     }
+  //     return array;
+  // }
+
+  // function swap(i, j, array) {
+  //     const temp = array[j];
+  //     array[j] = array[i];
+  //     array[i] = temp;
+  // }
+
+//////////////////////////////
+// Three Sum
+//////////////////////////////
+
+function threeNumberSum(array, targetSum) {
+	array.sort((a, b) => a - b);
+	const triplets = [];
+	for (let i = 0; i < array.length - 2; i++) {
+		let left = i + 1;
+		let right = array.length - 1;
+		while (left < right) {
+			const currentSum = array[i] + array[left] + array[right];
+			if (currentSum === targetSum) {
+				triplets.push([array[i], array[left], array[right]]);
+				left++;
+				right--;
+			} else if (currentSum < targetSum) {
+				left++;
+			} else if (currentSum > targetSum) {
+				right--;
+			}
+		}
+	}
+	return triplets;
+}
