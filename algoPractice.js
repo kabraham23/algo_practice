@@ -761,57 +761,77 @@
 // Three Sum
 //////////////////////////////
 
-function threeNumberSum(array, targetSum) {
-	array.sort((a, b) => a - b);
-	const triplets = [];
-	for (let i = 0; i < array.length - 2; i++) {
-		let left = i + 1;
-		let right = array.length - 1;
-		while (left < right) {
-			const currentSum = array[i] + array[left] + array[right];
-			if (currentSum === targetSum) {
-				triplets.push([array[i], array[left], array[right]]);
-				left++;
-				right--;
-			} else if (currentSum < targetSum) {
-				left++;
-			} else if (currentSum > targetSum) {
-				right--;
-			}
-		}
-	}
-	return triplets;
-}
+// function threeNumberSum(array, targetSum) {
+// 	array.sort((a, b) => a - b);
+// 	const triplets = [];
+// 	for (let i = 0; i < array.length - 2; i++) {
+// 		let left = i + 1;
+// 		let right = array.length - 1;
+// 		while (left < right) {
+// 			const currentSum = array[i] + array[left] + array[right];
+// 			if (currentSum === targetSum) {
+// 				triplets.push([array[i], array[left], array[right]]);
+// 				left++;
+// 				right--;
+// 			} else if (currentSum < targetSum) {
+// 				left++;
+// 			} else if (currentSum > targetSum) {
+// 				right--;
+// 			}
+// 		}
+// 	}
+// 	return triplets;
+// }
 
 ///////////////////////////////
 // Smallest Difference in two arrays
 ///////////////////////////////
 
-function smallestDifference(arrayOne, arrayTwo) {
-	arrayOne.sort((a, b) => a - b);
-	arrayTwo.sort((a, b) => a - b);
-	let idxOne = 0;
-	let idxTwo = 0;
-	let smallest = Infinity;
-	let current = Infinity;
-	let smallestPair = [];
-	while (idxOne < arrayOne.length && idxTwo < arrayTwo.length) {
-		let firstNum = arrayOne[idxOne];
-		let secondNum = arrayTwo[idxTwo];
-		if (firstNum < secondNum) {
-			current = secondNum - firstNum;
-			idxOne++;
-		} else if (secondNum < firstNum) {
-			current = firstNum - secondNum;
-			idxTwo++;
-		} else {
-			return [firstNum, secondNum];
-		}
-		if (smallest > current) {
-			smallest = current;
-			smallestPair = [firstNum, secondNum];
-		}
+// function smallestDifference(arrayOne, arrayTwo) {
+// 	arrayOne.sort((a, b) => a - b);
+// 	arrayTwo.sort((a, b) => a - b);
+// 	let idxOne = 0;
+// 	let idxTwo = 0;
+// 	let smallest = Infinity;
+// 	let current = Infinity;
+// 	let smallestPair = [];
+// 	while (idxOne < arrayOne.length && idxTwo < arrayTwo.length) {
+// 		let firstNum = arrayOne[idxOne];
+// 		let secondNum = arrayTwo[idxTwo];
+// 		if (firstNum < secondNum) {
+// 			current = secondNum - firstNum;
+// 			idxOne++;
+// 		} else if (secondNum < firstNum) {
+// 			current = firstNum - secondNum;
+// 			idxTwo++;
+// 		} else {
+// 			return [firstNum, secondNum];
+// 		}
+// 		if (smallest > current) {
+// 			smallest = current;
+// 			smallestPair = [firstNum, secondNum];
+// 		}
+// 	}
+// 	return smallestPair;
+// }
+
+///////////////////////////////
+// Move Element to End
+///////////////////////////////
+
+function moveElementToEnd(array, toMove) {
+	let i = 0;
+	let j = array.length -1;
+	while (i < j) {
+		while (i < j && array[j] === toMove) j--;
+		if (array[i] === toMove) swap(i, j, array);
+		i++;
 	}
-	return smallestPair;
+	return array;
 }
 
+function swap(i, j, array) {
+	const temp = array[j];
+	array[j] = array[i];
+	array[i] = temp;
+}
