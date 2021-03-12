@@ -842,36 +842,75 @@
 
 // MY ANSWER
 
-function isMonotonic(array) {
-	monotonicArray = false;
-	array.sort((a, b) => a - b);
-	for (let i = 0; i < array.length; i++) {
-		if (array[i] === array[i + 1])
-			momontonicArray = true;
-	}
-	return monotonicArray;
-}
+// function isMonotonic(array) {
+// 	monotonicArray = false;
+// 	array.sort((a, b) => a - b);
+// 	for (let i = 0; i < array.length; i++) {
+// 		if (array[i] === array[i + 1])
+// 			momontonicArray = true;
+// 	}
+// 	return monotonicArray;
+// }
 
-// REAL ANSWER
+// // REAL ANSWER
 
-function isMonotonic(array) {
-	if (array.length <= 2) return true;
+// function isMonotonic(array) {
+// 	if (array.length <= 2) return true;
 	
-	let direction = array[1] - array[0];
-	for (let i = 2; i < array.length; i++) {
-		if (direction === 0) {
-			direction = array[i] - array[i - 1];
-			continue;
-		}
-		if (breaksDirection(direction, array[i - 1], array[i])) {
-			return false;
-		}
-	}
-	return true;
-}
+// 	let direction = array[1] - array[0];
+// 	for (let i = 2; i < array.length; i++) {
+// 		if (direction === 0) {
+// 			direction = array[i] - array[i - 1];
+// 			continue;
+// 		}
+// 		if (breaksDirection(direction, array[i - 1], array[i])) {
+// 			return false;
+// 		}
+// 	}
+// 	return true;
+// }
 
-function breaksDirection(direction, previousInt, currentInt) {
-	const difference = currentInt - previousInt;
-	if (direction > 0) return difference < 0;
-	return difference > 0;
+// function breaksDirection(direction, previousInt, currentInt) {
+// 	const difference = currentInt - previousInt;
+// 	if (direction > 0) return difference < 0;
+// 	return difference > 0;
+// }
+
+
+////////////////////////////////////////
+// Spiral Traverse
+///////////////////////////////////////
+
+function spiralTraverse(array) {
+	const result = [];
+	let startRow = 0,
+			endRow = array.length -1;
+	let startCol = 0,
+			endCol = array[0].length -1;
+	
+	while (startRow <= endRow && startCol <= endCol) {
+		for (let col = startCol; col <= endCol; col++) {
+			result.push(array[startRow][col]);
+		}
+		
+		for (let row = startRow + 1; row <= endRow; row++) {
+			result.push(array[row][endCol]);
+		}
+		
+		for (let col = endCol - 1; col >= startCol; col--) {
+			if (startRow === endRow) break;
+			result.push(array[endRow][col]);
+		}
+		
+		for (let row = endRow - 1; row > startRow; row--) {
+			if (startCol === endCol) break;
+			result.push(array[row][startCol]);
+		}
+		
+		startRow++;
+		endRow--;
+		startCol++;
+		endCol--;
+	}
+	return result;
 }
