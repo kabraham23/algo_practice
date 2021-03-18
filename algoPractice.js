@@ -881,39 +881,65 @@
 // Spiral Traverse
 ///////////////////////////////////////
 
-function spiralTraverse(array) {
-	const result = [];
-	let startRow = 0,
-			endRow = array.length -1;
-	let startCol = 0,
-			endCol = array[0].length -1;
+// function spiralTraverse(array) {
+// 	const result = [];
+// 	let startRow = 0,
+// 			endRow = array.length -1;
+// 	let startCol = 0,
+// 			endCol = array[0].length -1;
 	
-	while (startRow <= endRow && startCol <= endCol) {
-		for (let col = startCol; col <= endCol; col++) {
-			result.push(array[startRow][col]);
-		}
+// 	while (startRow <= endRow && startCol <= endCol) {
+// 		for (let col = startCol; col <= endCol; col++) {
+// 			result.push(array[startRow][col]);
+// 		}
 		
-		for (let row = startRow + 1; row <= endRow; row++) {
-			result.push(array[row][endCol]);
-		}
+// 		for (let row = startRow + 1; row <= endRow; row++) {
+// 			result.push(array[row][endCol]);
+// 		}
 		
-		for (let col = endCol - 1; col >= startCol; col--) {
-			if (startRow === endRow) break;
-			result.push(array[endRow][col]);
-		}
+// 		for (let col = endCol - 1; col >= startCol; col--) {
+// 			if (startRow === endRow) break;
+// 			result.push(array[endRow][col]);
+// 		}
 		
-		for (let row = endRow - 1; row > startRow; row--) {
-			if (startCol === endCol) break;
-			result.push(array[row][startCol]);
-		}
+// 		for (let row = endRow - 1; row > startRow; row--) {
+// 			if (startCol === endCol) break;
+// 			result.push(array[row][startCol]);
+// 		}
 		
-		startRow++;
-		endRow--;
-		startCol++;
-		endCol--;
+// 		startRow++;
+// 		endRow--;
+// 		startCol++;
+// 		endCol--;
+// 	}
+// 	return result;
+// }
+
+///////////////////////////////////
+// Longest Peak
+///////////////////////////////////
+
+function longestPeak(array) {
+  // Write your code here.
+	let longestPeakLength = 0;
+	let i = 1;
+	while (i < array.length -1) {
+		const isPeak = array[i - 1] < array[i] && array[i + 1] < array[i];
+		if (!isPeak) {
+			i++;
+			continue;
+		}
+		let leftIdx = i - 2;
+		while (leftIdx >= 0 && array[leftIdx] < array[leftIdx +1]) {
+			leftIdx--;
+		}
+		let rightIdx = i+2;
+		while (rightIdx < array.length && array[rightIdx] < array[rightIdx - 1]) {
+			rightIdx++;
+		}
+			const currentPeakLength = rightIdx - leftIdx - 1;
+			longestPeakLength = Math.max(longestPeakLength, currentPeakLength);
+			i = rightIdx;
 	}
-	return result;
+	return longestPeakLength;
 }
-
-
-githr hfsdjffjf
