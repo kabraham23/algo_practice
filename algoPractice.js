@@ -920,7 +920,6 @@
 ///////////////////////////////////
 
 function longestPeak(array) {
-  // Write your code here.
 	let longestPeakLength = 0;
 	let i = 1;
 	while (i < array.length -1) {
@@ -942,4 +941,25 @@ function longestPeak(array) {
 			i = rightIdx;
 	}
 	return longestPeakLength;
+}
+
+///////////////////////////////////
+// Array of Products
+///////////////////////////////////
+
+function arrayOfProducts(array) {
+	const products = new Array(array.length).fill(1);
+	
+	let leftRunningProduct = 1;
+	for (let i = 0; i < array.length; i++) {
+		products[i] = leftRunningProduct;
+		leftRunningProduct *= array[i];
+	}
+	
+	let rightRunningProduct = 1;
+	for (let i = array.length - 1; i > -1; i--) {
+		products[i] *= rightRunningProduct;
+		rightRunningProduct *= array[i];
+	}
+	return products;
 }
