@@ -919,63 +919,159 @@
 // Longest Peak
 ///////////////////////////////////
 
-function longestPeak(array) {
-	let longestPeakLength = 0;
-	let i = 1;
-	while (i < array.length -1) {
-		const isPeak = array[i - 1] < array[i] && array[i + 1] < array[i];
-		if (!isPeak) {
-			i++;
-			continue;
-		}
-		let leftIdx = i - 2;
-		while (leftIdx >= 0 && array[leftIdx] < array[leftIdx +1]) {
-			leftIdx--;
-		}
-		let rightIdx = i+2;
-		while (rightIdx < array.length && array[rightIdx] < array[rightIdx - 1]) {
-			rightIdx++;
-		}
-			const currentPeakLength = rightIdx - leftIdx - 1;
-			longestPeakLength = Math.max(longestPeakLength, currentPeakLength);
-			i = rightIdx;
-	}
-	return longestPeakLength;
-}
+// function longestPeak(array) {
+// 	let longestPeakLength = 0;
+// 	let i = 1;
+// 	while (i < array.length -1) {
+// 		const isPeak = array[i - 1] < array[i] && array[i + 1] < array[i];
+// 		if (!isPeak) {
+// 			i++;
+// 			continue;
+// 		}
+// 		let leftIdx = i - 2;
+// 		while (leftIdx >= 0 && array[leftIdx] < array[leftIdx +1]) {
+// 			leftIdx--;
+// 		}
+// 		let rightIdx = i+2;
+// 		while (rightIdx < array.length && array[rightIdx] < array[rightIdx - 1]) {
+// 			rightIdx++;
+// 		}
+// 			const currentPeakLength = rightIdx - leftIdx - 1;
+// 			longestPeakLength = Math.max(longestPeakLength, currentPeakLength);
+// 			i = rightIdx;
+// 	}
+// 	return longestPeakLength;
+// }
 
-///////////////////////////////////
-// Array of Products
-///////////////////////////////////
+// ///////////////////////////////////
+// // Array of Products
+// ///////////////////////////////////
 
-function arrayOfProducts(array) {
-	const products = new Array(array.length).fill(1);
+// function arrayOfProducts(array) {
+// 	const products = new Array(array.length).fill(1);
 	
-	let leftRunningProduct = 1;
-	for (let i = 0; i < array.length; i++) {
-		products[i] = leftRunningProduct;
-		leftRunningProduct *= array[i];
-	}
+// 	let leftRunningProduct = 1;
+// 	for (let i = 0; i < array.length; i++) {
+// 		products[i] = leftRunningProduct;
+// 		leftRunningProduct *= array[i];
+// 	}
 	
-	let rightRunningProduct = 1;
-	for (let i = array.length - 1; i > -1; i--) {
-		products[i] *= rightRunningProduct;
-		rightRunningProduct *= array[i];
-	}
-	return products;
-}
+// 	let rightRunningProduct = 1;
+// 	for (let i = array.length - 1; i > -1; i--) {
+// 		products[i] *= rightRunningProduct;
+// 		rightRunningProduct *= array[i];
+// 	}
+// 	return products;
+// }
 
-////////////////////////////////
-// Remove Duplicates from Sorted Array
-////////////////////////////////
+// ////////////////////////////////
+// // Remove Duplicates from Sorted Array (leetcode)
+// ////////////////////////////////
 
-var removeDuplicates = function(nums) {
-  if (nums.length === 0) return 0;
-  i = 0;
-  for (let j = 1; j < nums.length; j++) {
-      if (nums[j] !== nums[i]) {
-          i++;
-          nums[i] = nums[j];
-      }
+// var removeDuplicates = function(nums) {
+//   if (nums.length === 0) return 0;
+//   i = 0;
+//   for (let j = 1; j < nums.length; j++) {
+//       if (nums[j] !== nums[i]) {
+//           i++;
+//           nums[i] = nums[j];
+//       }
+//   }
+//   return i + 1;
+// };
+
+////////////////////////////////////
+// Full BST Construction
+////////////////////////////////////
+
+class BST {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
   }
-  return i + 1;
-};
+
+  insert(value) {
+    // Write your code here.
+    // Do not edit the return statement of this method.
+			let current = this;
+			while(true) {
+				if(value < current.value){
+					if(current.left === null){
+						current.left = new BST(value);
+						break;
+						} else {
+							current = current.left;
+						}
+					} else {
+						if (current.right === null) {
+							current.right = new BST(value);
+							break;
+						} else {
+							current = current.right;
+						}
+				}
+			}
+    return this;
+	}
+
+  contains(value) {
+    // Write your code here.
+		let current = this;
+		while (current !== null) {
+			if (value < current.value){
+				current = current.left;
+			} else if (value > current.value){
+				current = current.right;
+			} else {
+				return true;
+			}
+		}
+		return false;
+  }
+
+  remove(value, parentNode = null) {
+    // Write your code here.
+    // Do not edit the return statement of this method.
+		let current = this;
+		while (current !== null) {
+			if (value < current.value) {
+				parentNode = current;
+				current = current.left;
+			} else if (value > current.value) {
+				parentNode = current;
+				current = current.right;
+			} else {
+				if (current.left !== null && current.right !== null) {
+					current.value = current.right.getMinValue();
+					current.right.remove(current.value, current);
+				} else if (parentNode === null) {
+					if (current.left !== null) {
+						current.value = current.left.value;
+						current.right = current.left.right;
+						current.left = current.left.left;
+					} else if (current.right !== null) {
+						current.value = current.right.value;
+						current.left = current.right.left;
+						current.right = current.right.right;
+					} else {
+						
+					}
+				} else if (parentNode.left === current) {
+					parentNode.left = current.left !== null ? current.left : current.right;
+				} else if (parentNode.right === current) {
+					parentNode.right = current.left !== null ? current.left : current.right;
+				}
+				break;
+			}
+		}
+    return this;
+  }
+	getMinValue() {
+		let current = this;
+		while (current.left !== null) {
+			current = current.left;
+		}
+		return current.value;
+	}
+}
