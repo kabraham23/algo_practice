@@ -984,94 +984,116 @@
 // Full BST Construction
 ////////////////////////////////////
 
-class BST {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
+// class BST {
+//   constructor(value) {
+//     this.value = value;
+//     this.left = null;
+//     this.right = null;
+//   }
 
-  insert(value) {
-    // Write your code here.
-    // Do not edit the return statement of this method.
-			let current = this;
-			while(true) {
-				if(value < current.value){
-					if(current.left === null){
-						current.left = new BST(value);
-						break;
-						} else {
-							current = current.left;
-						}
-					} else {
-						if (current.right === null) {
-							current.right = new BST(value);
-							break;
-						} else {
-							current = current.right;
-						}
-				}
-			}
-    return this;
-	}
+//   insert(value) {
+//     // Write your code here.
+//     // Do not edit the return statement of this method.
+// 			let current = this;
+// 			while(true) {
+// 				if(value < current.value){
+// 					if(current.left === null){
+// 						current.left = new BST(value);
+// 						break;
+// 						} else {
+// 							current = current.left;
+// 						}
+// 					} else {
+// 						if (current.right === null) {
+// 							current.right = new BST(value);
+// 							break;
+// 						} else {
+// 							current = current.right;
+// 						}
+// 				}
+// 			}
+//     return this;
+// 	}
 
-  contains(value) {
-    // Write your code here.
-		let current = this;
-		while (current !== null) {
-			if (value < current.value){
-				current = current.left;
-			} else if (value > current.value){
-				current = current.right;
-			} else {
-				return true;
-			}
-		}
-		return false;
-  }
+//   contains(value) {
+//     // Write your code here.
+// 		let current = this;
+// 		while (current !== null) {
+// 			if (value < current.value){
+// 				current = current.left;
+// 			} else if (value > current.value){
+// 				current = current.right;
+// 			} else {
+// 				return true;
+// 			}
+// 		}
+// 		return false;
+//   }
 
-  remove(value, parentNode = null) {
-    // Write your code here.
-    // Do not edit the return statement of this method.
-		let current = this;
-		while (current !== null) {
-			if (value < current.value) {
-				parentNode = current;
-				current = current.left;
-			} else if (value > current.value) {
-				parentNode = current;
-				current = current.right;
-			} else {
-				if (current.left !== null && current.right !== null) {
-					current.value = current.right.getMinValue();
-					current.right.remove(current.value, current);
-				} else if (parentNode === null) {
-					if (current.left !== null) {
-						current.value = current.left.value;
-						current.right = current.left.right;
-						current.left = current.left.left;
-					} else if (current.right !== null) {
-						current.value = current.right.value;
-						current.left = current.right.left;
-						current.right = current.right.right;
-					} else {
+//   remove(value, parentNode = null) {
+//     // Write your code here.
+//     // Do not edit the return statement of this method.
+// 		let current = this;
+// 		while (current !== null) {
+// 			if (value < current.value) {
+// 				parentNode = current;
+// 				current = current.left;
+// 			} else if (value > current.value) {
+// 				parentNode = current;
+// 				current = current.right;
+// 			} else {
+// 				if (current.left !== null && current.right !== null) {
+// 					current.value = current.right.getMinValue();
+// 					current.right.remove(current.value, current);
+// 				} else if (parentNode === null) {
+// 					if (current.left !== null) {
+// 						current.value = current.left.value;
+// 						current.right = current.left.right;
+// 						current.left = current.left.left;
+// 					} else if (current.right !== null) {
+// 						current.value = current.right.value;
+// 						current.left = current.right.left;
+// 						current.right = current.right.right;
+// 					} else {
 						
-					}
-				} else if (parentNode.left === current) {
-					parentNode.left = current.left !== null ? current.left : current.right;
-				} else if (parentNode.right === current) {
-					parentNode.right = current.left !== null ? current.left : current.right;
-				}
-				break;
-			}
-		}
-    return this;
+// 					}
+// 				} else if (parentNode.left === current) {
+// 					parentNode.left = current.left !== null ? current.left : current.right;
+// 				} else if (parentNode.right === current) {
+// 					parentNode.right = current.left !== null ? current.left : current.right;
+// 				}
+// 				break;
+// 			}
+// 		}
+//     return this;
+//   }
+// 	getMinValue() {
+// 		let current = this;
+// 		while (current.left !== null) {
+// 			current = current.left;
+// 		}
+// 		return current.value;
+// 	}
+// }
+
+////////////////////////////////
+// Class Photos
+////////////////////////////////
+
+function classPhotos(redShirtHeights, blueShirtHeights) {
+	
+	  redShirtHeights.sort((a, b) => b - a);
+	  blueShirtHeights.sort((a, b) => b - a);
+	  
+	  const shirtColorFront = redShirtHeights[0] < blueShirtHeights[0] ? 'RED' : 'BLUE';
+	  for (let i = 0; i < redShirtHeights.length; i++) {
+		  const redShirtHeight = redShirtHeights[i];
+		  const blueShirtHeight = blueShirtHeights[i];
+		  
+		  if (shirtColorFront === 'RED') {
+			  if (redShirtHeight >= blueShirtHeight) return false;
+		  } else if (blueShirtHeight >= redShirtHeight) return false;
+	  }
+	  
+	return true;
   }
-	getMinValue() {
-		let current = this;
-		while (current.left !== null) {
-			current = current.left;
-		}
-		return current.value;
-	}
-}
