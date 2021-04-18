@@ -1097,3 +1097,16 @@ function classPhotos(redShirtHeights, blueShirtHeights) {
 	  
 	return true;
   }
+
+/////////////////////////////
+// Array - Shift Left
+/////////////////////////////
+
+function rotateLeft(a, d) {
+  let rotatedArray = a.concat();
+  for (let i = 0; i < d; i++) {
+    let frontItem = rotatedArray.shift();
+    rotatedArray.push(frontItem);
+  }
+  return rotatedArray;
+}
