@@ -1080,33 +1080,94 @@
 // Class Photos
 ////////////////////////////////
 
-function classPhotos(redShirtHeights, blueShirtHeights) {
+// function classPhotos(redShirtHeights, blueShirtHeights) {
 	
-	  redShirtHeights.sort((a, b) => b - a);
-	  blueShirtHeights.sort((a, b) => b - a);
+// 	  redShirtHeights.sort((a, b) => b - a);
+// 	  blueShirtHeights.sort((a, b) => b - a);
 	  
-	  const shirtColorFront = redShirtHeights[0] < blueShirtHeights[0] ? 'RED' : 'BLUE';
-	  for (let i = 0; i < redShirtHeights.length; i++) {
-		  const redShirtHeight = redShirtHeights[i];
-		  const blueShirtHeight = blueShirtHeights[i];
+// 	  const shirtColorFront = redShirtHeights[0] < blueShirtHeights[0] ? 'RED' : 'BLUE';
+// 	  for (let i = 0; i < redShirtHeights.length; i++) {
+// 		  const redShirtHeight = redShirtHeights[i];
+// 		  const blueShirtHeight = blueShirtHeights[i];
 		  
-		  if (shirtColorFront === 'RED') {
-			  if (redShirtHeight >= blueShirtHeight) return false;
-		  } else if (blueShirtHeight >= redShirtHeight) return false;
-	  }
+// 		  if (shirtColorFront === 'RED') {
+// 			  if (redShirtHeight >= blueShirtHeight) return false;
+// 		  } else if (blueShirtHeight >= redShirtHeight) return false;
+// 	  }
 	  
-	return true;
-  }
+// 	return true;
+//   }
 
-/////////////////////////////
-// Array - Shift Left
-/////////////////////////////
+// /////////////////////////////
+// // Array - Shift Left
+// /////////////////////////////
 
-function rotateLeft(a, d) {
-  let rotatedArray = a.concat();
-  for (let i = 0; i < d; i++) {
-    let frontItem = rotatedArray.shift();
-    rotatedArray.push(frontItem);
+// function rotateLeft(a, d) {
+//   let rotatedArray = a.concat();
+//   for (let i = 0; i < d; i++) {
+//     let frontItem = rotatedArray.shift();
+//     rotatedArray.push(frontItem);
+//   }
+//   return rotatedArray;
+// }
+
+///////////////////////////////
+// Linked List Practice (Colt Steele)
+///////////////////////////////
+
+class Node{
+  constructor(val){
+    this.val = val;
+    this.next = null;
   }
-  return rotatedArray;
+}
+
+class SinglyLinkedList{
+  constructor(){
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+  push(val){
+    let newNode = new Node(val);
+    if (!this.head){
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    } 
+    this.length++;
+    return this;
+  }
+}
+
+var list = new SinglyLinkedList()
+list.push("Hello")
+list.push("Goodbye")
+
+/////////////////////
+// Linked List - Pop
+/////////////////////
+
+class Node{
+  constructor(val){
+    this.val = val;
+    this.next = null;
+  }
+}
+
+class SinglyLinkedList{
+  constructor(){
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+  traverse(val){
+    let current = this.head;
+    while(current){
+      console.log(current.val);
+      current = current.next;
+    }
+  }
 }
