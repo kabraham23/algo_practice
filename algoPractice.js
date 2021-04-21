@@ -1163,11 +1163,21 @@ class SinglyLinkedList{
     this.tail = null;
     this.length = 0;
   }
-  traverse(val){
+  pop(val){
+    if(!this.head) return undefined;
     let current = this.head;
-    while(current){
-      console.log(current.val);
+    let newTail = current;
+    while(current.next){
+      newTail = current;
       current = current.next;
     }
+    this.tail = newTail;
+    this.tail.next = null;
+    this.length--;
+    if(this.length === 0){
+      this.head = null;
+      this.tail = null;
+    }
+    return current;
   }
 }
