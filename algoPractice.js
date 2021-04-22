@@ -736,14 +736,14 @@
   ///////////////////////////////
 
   // function bubbleSort(array) {
-  //     let sorted = false;
+  //     let isSorted = false;
   //     let counter = 0;
   //     while (!isSorted) {
-  //       sorted = true;
+  //       isSorted = true;
   //       for (let i = 0; i < array.length - 1 - counter; i++) {
   //           if (array[i] > array[i + 1]) {
   //               swap(i, i + 1, array);
-  //               sorted = false;
+  //               isSorted = false;
   //           }
   //       }
   //       counter++;
@@ -1186,39 +1186,65 @@
 // Linked List (shift)
 ///////////////////////////
 
-class Node{
-    constructor(val){
-      this.val = val;
-      this.next = null;
-    }
-  }
+// class Node{
+//     constructor(val){
+//       this.val = val;
+//       this.next = null;
+//     }
+//   }
   
-  class SinglyLinkedList{
-    constructor(){
-      this.head = null;
-      this.tail = null;
-      this.length = 0;
-    }
-  shift(){
-    if(!this.head) return undefined;
-    let currentHead = this.head;
-    this.head = currentHead.next;
-    this.length--;
-    if(this.length === 0) {
-      this.tail = null;
-    }
-    return currentHead;
-  }
-}
+//   class SinglyLinkedList{
+//     constructor(){
+//       this.head = null;
+//       this.tail = null;
+//       this.length = 0;
+//     }
+//   shift(){
+//     if(!this.head) return undefined;
+//     let currentHead = this.head;
+//     this.head = currentHead.next;
+//     this.length--;
+//     if(this.length === 0) {
+//       this.tail = null;
+//     }
+//     return currentHead;
+//   }
+// }
 
 ////////////////////////
 // is Palindrome
 ////////////////////////
 
-function isPalindrome(string) {
-	const reversedString = [];
-	for (let i = string.length - 1; i >= 0; i--) {
-		reversedString.push(string[i]);
-	}
-	return string === reversedString.join('');
+// function isPalindrome(string) {
+// 	const reversedString = [];
+// 	for (let i = string.length - 1; i >= 0; i--) {
+// 		reversedString.push(string[i]);
+// 	}
+// 	return string === reversedString.join('');
+// }
+
+
+//////////////////////////////////////////
+// HackerRank Minimum Swaps 2
+/////////////////////////////////////////
+
+function minimumSwaps(arr) {
+  let swapCount = 0;
+  for (let i = 0; i < arr.length; i++) {
+      const currentIndex = arr[i];
+      const position = i + 1;
+      if (currentIndex !== position) {
+          let indexToSwap
+          for (let j = 0; j < arr.length; j++) {
+              if (arr[j] === position) {
+                  indexToSwap = j;
+                  break;
+              }
+          }
+          arr[indexToSwap] = currentIndex;
+          arr[i] = position;
+          swapCount = swapCount+1;
+      }
+  }
+  return swapCount;
 }
