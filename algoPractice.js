@@ -1278,3 +1278,14 @@ function minimumSwaps(arr) {
   }
   return swapCount;
 }
+
+/////////////////////////////////////
+// Divide Two Integers (leetcode)
+/////////////////////////////////////
+
+var divide = function(dividend, divisor) {
+  const answer = Math.trunc(dividend / divisor);
+      if (answer > 2147483647) return 2147483647;
+  return answer;
+};
+
