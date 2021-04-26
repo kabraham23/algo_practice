@@ -1240,7 +1240,36 @@ class Node{
         this.length++;
         return this;
       }
+      
     }
+
+///////////////////////////
+// Linked List - Get
+///////////////////////////
+class Node{
+  constructor(val){
+    this.val = val;
+    this.next = null;
+  }
+}
+
+class SinglyLinkedList{
+  constructor(){
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+    let counter = 0;
+    let current = this.head;
+    while (counter !== index) {
+      current = current.next;
+      counter++;
+    }
+    return current;
+  }
+}
 ////////////////////////
 // is Palindrome
 ////////////////////////
@@ -1258,34 +1287,34 @@ class Node{
 // HackerRank Minimum Swaps 2
 /////////////////////////////////////////
 
-function minimumSwaps(arr) {
-  let swapCount = 0;
-  for (let i = 0; i < arr.length; i++) {
-      const currentIndex = arr[i];
-      const position = i + 1;
-      if (currentIndex !== position) {
-          let indexToSwap
-          for (let j = 0; j < arr.length; j++) {
-              if (arr[j] === position) {
-                  indexToSwap = j;
-                  break;
-              }
-          }
-          arr[indexToSwap] = currentIndex;
-          arr[i] = position;
-          swapCount = swapCount+1;
-      }
-  }
-  return swapCount;
-}
+// function minimumSwaps(arr) {
+//   let swapCount = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//       const currentIndex = arr[i];
+//       const position = i + 1;
+//       if (currentIndex !== position) {
+//           let indexToSwap
+//           for (let j = 0; j < arr.length; j++) {
+//               if (arr[j] === position) {
+//                   indexToSwap = j;
+//                   break;
+//               }
+//           }
+//           arr[indexToSwap] = currentIndex;
+//           arr[i] = position;
+//           swapCount = swapCount+1;
+//       }
+//   }
+//   return swapCount;
+// }
 
 /////////////////////////////////////
 // Divide Two Integers (leetcode)
 /////////////////////////////////////
 
-var divide = function(dividend, divisor) {
-  const answer = Math.trunc(dividend / divisor);
-      if (answer > 2147483647) return 2147483647;
-  return answer;
-};
+// var divide = function(dividend, divisor) {
+//   const answer = Math.trunc(dividend / divisor);
+//       if (answer > 2147483647) return 2147483647;
+//   return answer;
+// };
 
