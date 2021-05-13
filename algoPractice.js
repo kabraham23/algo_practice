@@ -1347,10 +1347,39 @@ class DoublyLinkedList {
     } else {
       this.tail = poppedNode.prev;
       this.tail.next = null;
+      poppedNode.prev = null;
     }
     this.length--;
     return poppedNode;
   }
+  shift(){
+    if (this.length === 0) return undefined;
+    let oldHead = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = oldHead.next;
+      this.head.prev = null;
+      oldHead.next = null;
+    }
+    this.length--;
+    return oldHead;
+  }
+  unshift(){
+    let newNode = new Node(val);
+    if (this.length === 0) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.head.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
+  get()
 }
 
 
@@ -1402,3 +1431,17 @@ class DoublyLinkedList {
 //   return answer;
 // };
 
+////////////////////////////////
+// Sorted Squared Array
+////////////////////////////////
+
+function sortedSquaredArray(array) {
+	const sortedSquares = new Array(array.length).fill(0);
+	
+	for (let i = 0; i < array.length; i++) {
+		const value = array[i];
+		sortedSquares[i] = value * value;
+	}
+	sortedSquares.sort((a, b) => a - b);
+  return sortedSquares;
+}
