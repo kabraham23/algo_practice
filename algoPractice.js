@@ -1435,13 +1435,36 @@ class DoublyLinkedList {
 // Sorted Squared Array
 ////////////////////////////////
 
-function sortedSquaredArray(array) {
-	const sortedSquares = new Array(array.length).fill(0);
+// function sortedSquaredArray(array) {
+// 	const sortedSquares = new Array(array.length).fill(0);
 	
-	for (let i = 0; i < array.length; i++) {
-		const value = array[i];
-		sortedSquares[i] = value * value;
+// 	for (let i = 0; i < array.length; i++) {
+// 		const value = array[i];
+// 		sortedSquares[i] = value * value;
+// 	}
+// 	sortedSquares.sort((a, b) => a - b);
+//   return sortedSquares;
+// }
+
+///////////////////////////////
+// Validate BST
+///////////////////////////////
+
+class BST {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+function validateBst(tree) {
+	return validateBSTHelper(tree, -Infinity, Infinity);
 	}
-	sortedSquares.sort((a, b) => a - b);
-  return sortedSquares;
+
+function validateBSTHelper(tree, minValue, maxValue) {
+	if (tree === null) return true;
+	if (tree.value < minValue || tree.value >= maxValue) return false;
+	const leftIsValid = validateBSTHelper(tree.left, minValue, tree.value);
+	return leftIsValid && validateBSTHelper(tree.right, tree.value, maxValue);
 }
