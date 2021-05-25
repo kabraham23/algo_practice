@@ -1494,3 +1494,21 @@ function runLengthEncoding(string) {
 	
 	return encodedStringCharacters.join('');
 }
+
+//////////////////////////////
+// Generate Document
+//////////////////////////////
+function generateDocument(characters, document) {
+	const characterCounts = {};
+	
+	for (const char of characters) {
+		if(!(char in characterCounts)) characterCounts[char] = 0;
+		characterCounts[char]++;
+	}
+	
+	for (const char of document) {
+		if(!(char in characterCounts) || characterCounts[char] === 0) return false;
+		characterCounts[char]--;
+	}
+  return true;
+}
