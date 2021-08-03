@@ -1601,7 +1601,7 @@ class BST {
 }
 
 //////////////////////////////
-// Find Kth Larget Value in BST
+// Find Kth Largest Value in BST
 ///////////////////////////////
 
 class BST {
@@ -1624,4 +1624,28 @@ function inOrderTraverse(node, sortedNodeValues) {
 	inOrderTraverse(node.left, sortedNodeValues);
 	sortedNodeValues.push(node.value);
 	inOrderTraverse(node.right, sortedNodeValues);
+}
+
+/////////////////////////////
+// Remove Dupes from Linked List
+/////////////////////////////
+
+class LinkedList {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+function removeDuplicatesFromLinkedList(linkedList) {
+	let currentNode = linkedList;
+	while (currentNode !== null) {
+		let nextDistinctNode = currentNode.next;
+		while (nextDistinctNode !== null && nextDistinctNode.value === currentNode.value) {
+			nextDistinctNode = nextDistinctNode.next;
+		}
+		currentNode.next = nextDistinctNode;
+		currentNode = nextDistinctNode;
+	}
+  return linkedList;
 }
